@@ -219,6 +219,8 @@ ggplot(enc_habit, aes(estrato, PAPA, col = genero)) +
 ```{r}
 t2 <- with(enc_habit, tapply(PAPA, list(genero, estrato), mean, na.rm = TRUE))
 knitr::kable(t2)
+
+esta es una nueva linea de codigo 
 ```
 
 
