@@ -61,3 +61,19 @@ text(grafica1,
      labels = paste(tabla1," ó ",round((tabla1/sum(tabla1)*100),1),"%")
      )
 ```
+
+
+
+```{r}
+papa <- as.numeric(encuesta$PAPA)
+
+par(bg = "white")
+
+hist(papa, main = "Histograma de Promedio Aritmético Ponderado Acumulado",
+     xlab = "Años", ylab = "Frecuencia",
+     border = "black",
+     col = "wheat",
+     las =1,
+     xlim = c(3,5))
+```
+
