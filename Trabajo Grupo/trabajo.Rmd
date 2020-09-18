@@ -61,6 +61,8 @@ text(grafica1,
      labels = paste(tabla1," ó ",round((tabla1/sum(tabla1)*100),1),"%")
      )
 ```
+
+
 ```{r}
 
 ```
