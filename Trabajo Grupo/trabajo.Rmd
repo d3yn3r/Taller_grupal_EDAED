@@ -45,10 +45,10 @@ abline(h   = seq(0,132,10),
        )
 
 #guardar los datos de la columna en una tabla
-tabla1 <- table(encuesta$genero)
+genero <- table(encuesta$genero)
 
 #mostramos con barplot la tabla1
-grafica1 <- barplot(tabla1,
+grafica_genero <- barplot(genero,
                 col       = c("blue", "yellow4"),
                 font.axis = 2,
                 axes      = FALSE,
@@ -56,9 +56,9 @@ grafica1 <- barplot(tabla1,
                 )
 axis(2, at = c(0,35,70,97,132),las = 1)
 
-text(grafica1,
+text(grafica_genero,
      c(45,105),
-     labels = paste(tabla1," ó ",round((tabla1/sum(tabla1)*100),1),"%")
+     labels = paste(round((genero/sum(genero)*100),1),"%")
      )
 ```
 
