@@ -77,3 +77,50 @@ hist(papa, main = "Histograma de Promedio Aritmético Ponderado Acumulado",
      xlim = c(3,5))
 ```
 
+```{r}
+
+
+par(bg="white")
+plot(seq(0,10, length.out = 60), seq(0,6, length.out = 60), type="n",
+     main   = "Estrato",
+     
+     font.main = 4,
+     font.lab  = 4,
+     cex.main  = 1.1,
+     cex.lab   = 0.8,
+     cex.sub   = 0.8,
+     axes      = FALSE,
+     xlab      = " ",
+     ylab      = "Numero de personas que respondierón ",
+     xlim = c(0,7),
+     ylim = c(0,70)
+     )
+
+rect(par("usr")[1],par("usr")[3],par("usr")[2],par("usr")[4],col="white")
+
+abline(h   = seq(0,60,10), 
+       col = rep("grey30",17), 
+       lty = 3,
+       
+       )
+
+#guardar los datos de la columna en una tabla
+estrato <- table(encuesta$estrato)
+
+#mostramos con barplot la tabla1
+Barras_estrato <- barplot(estrato,
+                col       = c("blue", "yellow4"),
+                font.axis = 2,
+                axes      = FALSE,
+                add       = TRUE,
+                xlim = c(0,5)
+                )
+axis(2, at = c(),las = 1)
+
+text(Barras_estrato,
+     c(4,23,48,63,12),
+     labels = paste(round((Barras_estrato/sum(Barras_estrato)*100),1),"%")
+     )
+
+```
+
