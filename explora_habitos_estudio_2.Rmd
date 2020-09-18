@@ -14,7 +14,11 @@ knitr::opts_chunk$set(echo = FALSE,
                       warning = FALSE)
 ```
 
-
+```{r}
+enc_habit <- read.csv2("Encuesta_habitos.csv", 
+                       encoding = "UTF-8",
+                       dec = ".")
+```
 
 
 ```{r}
@@ -43,7 +47,7 @@ legend(4.2, 1.5, legend = c("Promedio"), pch = 19, col = "red")
 ### Histograma básico.
 
 ```{r}
-hist(enc_habit$PAPA,xlab = "PAPA",ylab = "Frecuencia",las = 1, main = "PAPA")
+hist(enc_habit$PAPA)
 ```
 
 ### Histograma definitivo.
@@ -140,5 +144,3 @@ tabla_total
 ```
 
 
-hola
-deyner escribio
