@@ -175,3 +175,59 @@ text(Barras_computador+0.1,
      xpd = TRUE)
 ```
 
+
+```{r}
+#Grafica variable portatil
+
+par(bg = "white")
+plot(seq(0,10, length.out = 60), seq(0,6, length.out = 60), type="n",
+     main   = "Portatil",
+     
+     font.main = 4,
+     font.lab  = 4,
+     cex.main  = 1.1,
+     cex.lab   = 0.8,
+     cex.sub   = 0.8,
+     axes      = FALSE,
+     xlab      = " ",
+     ylab      = "Numero de personas que respondierón ",
+     xlim = c(0,5),
+     ylim = c(0,100)
+     )
+
+rect(par("usr")[1],par("usr")[3],par("usr")[2],par("usr")[4],col="white")
+
+abline(h   = seq(0,100,10), 
+       col = rep("grey30",17), 
+       lty = 3,
+       
+       )
+
+
+Portatil <- table(encuesta$portatil)
+
+Barras_Portatil <- barplot(Portatil,
+                           col       = c("blue", "yellow4"),
+                font.axis = 2,
+                axes      = FALSE,
+                add       = TRUE,
+                xlim = c(0,5),
+                names.arg = ""
+                )
+axis(2, at = c(),las = 1)
+
+text(Barras_estrato,
+     c(21,7,20,100),
+     labels = paste(round((Portatil/sum(Portatil)*100),1),"%")
+     )
+
+text(Barras_computador+0.1,
+     par("usr")[3],0.4,
+     labels = c("No","Si,pero alquilado","Si, pero prestado","Si, Propio"),
+     srt = 45,
+     pos = 2,
+     xpd = TRUE)
+
+```
+
+
