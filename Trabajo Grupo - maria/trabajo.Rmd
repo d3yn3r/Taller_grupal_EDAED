@@ -2,7 +2,9 @@
 title: "trabajo"
 author: "Deyner Lopez Pineda"
 date: "18/9/2020"
-output: html_document
+output:
+  html_document: default
+  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -16,6 +18,7 @@ knitr::opts_chunk$set(echo = FALSE,
 encuesta <- read.csv2("Encuesta_habitos_dep.csv", 
                        encoding = "UTF-8",
                        dec = ".")
+
 ```
 
 ```{r}
@@ -338,12 +341,6 @@ text(Barras_smartphone+0.1,
 
 ```
 
-
-```{r}
-Origen0 <- with(Encuesta_habitos1, c(Origen1, Origen2, Origen3))
-origen <- sort(table(Origen0), decreasing = TRUE)
-origen
-```
 ```{r}
 #Grafica variable Origen covid 19
 
@@ -367,8 +364,11 @@ rect(par("usr")[1],par("usr")[3],par("usr")[2],par("usr")[4],col="white")
 
 abline(h   = seq(0,80,10), 
        col = rep("grey30",17), 
-       lty = 3,
+       lty = 3
        )
+
+Origen0 <- with(Encuesta_habitos1, c(Origen1, Origen2, Origen3))
+origen <- sort(table(Origen0), decreasing = TRUE)
 
 
 Barras_origen <- barplot(origen,
@@ -382,13 +382,13 @@ Barras_origen <- barplot(origen,
 axis(2, at = c(),las = 1)
 
 text(Barras_origen,
-     c(75, 50, 18, 6, 4),
+     c(77, 50, 18, 11, 6),
      labels = paste(round((origen/sum(origen)*100),1),"%")
      )
 
 text(Barras_origen+0.1,
      par("usr")[3],0.4,
-     labels = ".",
+     labels = "",
      srt = 45,
      pos = 2,
      xpd = TRUE)
