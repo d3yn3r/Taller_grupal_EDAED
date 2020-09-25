@@ -367,7 +367,7 @@ abline(h   = seq(0,80,10),
        lty = 3
        )
 
-Origen0 <- with(Encuesta_habitos1, c(Origen1, Origen2, Origen3))
+Origen0 <- with(Encuesta_habitos_dep, c(Origen1, Origen2, Origen3))
 origen <- sort(table(Origen0), decreasing = TRUE)
 
 
@@ -434,7 +434,7 @@ abline(h   = seq(0,100,10),
        
        )
 
-Estado_gov <- table(Encuesta_habitos1$estad_gov)
+Estado_gov <- table(Encuesta_habitos_dep$estad_gov)
 
 Barras_Estado <- barplot(Estado_gov,
                            col = c("olivedrab3", "yellow4"),
