@@ -338,3 +338,127 @@ text(Barras_smartphone+0.1,
 
 ```
 
+
+```{r}
+Origen0 <- with(Encuesta_habitos1, c(Origen1, Origen2, Origen3))
+origen <- sort(table(Origen0), decreasing = TRUE)
+origen
+```
+```{r}
+#Grafica variable Origen covid 19
+
+par(bg = "white")
+plot(seq(0,10, length.out = 60), seq(0,6, length.out = 60), type="n",
+     main   = "Origen covid 19",
+     
+     font.main = 4,
+     font.lab  = 4,
+     cex.main  = 1.1,
+     cex.lab   = 0.8,
+     cex.sub   = 0.8,
+     axes      = FALSE,
+     xlab      = " ",
+     ylab      = "Numero de personas que respondierón ",
+     xlim = c(0,6),
+     ylim = c(0,80)
+     )
+
+rect(par("usr")[1],par("usr")[3],par("usr")[2],par("usr")[4],col="white")
+
+abline(h   = seq(0,80,10), 
+       col = rep("grey30",17), 
+       lty = 3,
+       )
+
+
+Barras_origen <- barplot(origen,
+                           col = c("turquoise2", "violet", "lawngreen", "lightpink1", "green"),
+                font.axis = 2,
+                axes      = FALSE,
+                add       = TRUE,
+                xlim = c(0,5),
+                names.arg = ""
+                )
+axis(2, at = c(),las = 1)
+
+text(Barras_origen,
+     c(75, 50, 18, 6, 4),
+     labels = paste(round((origen/sum(origen)*100),1),"%")
+     )
+
+text(Barras_origen+0.1,
+     par("usr")[3],0.4,
+     labels = ".",
+     srt = 45,
+     pos = 2,
+     xpd = TRUE)
+
+legend(Barras_origen[2, 1] +1 , 80, legend = c("Fue un resultado de pasar el virus 
+de animales a los humanos ",
+" Fue fabricado en un laboratorio ", 
+"N/N",
+"Es una conspiración",
+"No es real, es un pretexto de
+los gobiernos del mundo"),
+       col = c("turquoise2", "violet", "lawngreen", "lightpink1", "green"),
+       pch = 17)
+
+
+```
+
+
+```{r}
+#Grafica variable Estado gov
+
+par(bg = "white")
+plot(seq(0,10, length.out = 60), seq(0,6, length.out = 60), type="n",
+     main   = "Estado Gov",
+     
+     font.main = 4,
+     font.lab  = 4,
+     cex.main  = 1.1,
+     cex.lab   = 0.8,
+     cex.sub   = 0.8,
+     axes      = FALSE,
+     xlab      = " ",
+     ylab      = "Numero de personas que respondierón ",
+     xlim = c(0,4),
+     ylim = c(0,100)
+     )
+
+rect(par("usr")[1],par("usr")[3],par("usr")[2],par("usr")[4],col="white")
+
+abline(h   = seq(0,100,10), 
+       col = rep("grey30",17), 
+       lty = 3,
+       
+       )
+
+Estado_gov <- table(Encuesta_habitos1$estad_gov)
+
+Barras_Estado <- barplot(Estado_gov,
+                           col = c("olivedrab3", "yellow4"),
+                font.axis = 2,
+                axes      = FALSE,
+                add       = TRUE,
+                xlim = c(0,5),
+                names.arg = ""
+                )
+axis(2, at = c(),las = 1)
+
+text(Barras_Estado,
+     c(5, 5),
+     labels = paste(round((Estado_gov/sum(Estado_gov)*100),1),"%")
+     )
+
+text(Barras_Estado+0.1,
+     par("usr")[3],0.4,
+     labels = c("N/N", "No", "si"),
+     srt = 45,
+     pos = 2,
+     xpd = TRUE)
+
+
+
+```
+
