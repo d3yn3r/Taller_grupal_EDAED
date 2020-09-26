@@ -68,6 +68,9 @@ text(grafica_genero,
 ```{r}
 papa <- as.numeric(encuesta$PAPA_depurado)
 
+papa0 <- table(encuesta$PAPA_depurado)
+papa0
+
 par(bg = "white")
 
 hist(papa, main = "Histograma de Promedio Aritmético Ponderado Acumulado",
@@ -124,6 +127,13 @@ text(Barras_estrato,
      )
 
 ```
+## computador mesa
+```{r}
+computador_Mesa <- table(encuesta$computador_mesa)
+computador_Mesa
+```
+
+
 ```{r}
 par(bg="white")
 plot(seq(0,10, length.out = 60), seq(0,6, length.out = 60), type="n",
@@ -149,10 +159,6 @@ abline(h   = seq(0,100,10),
        
        )
 
-#guardar los datos de la columna en una tabla
-computador_Mesa <- table(encuesta$computador_mesa)
-
-#mostramos con barplot la tabla1
 Barras_computador <- barplot(computador_Mesa,
                 col       = c("blue", "yellow4"),
                 font.axis = 2,
@@ -174,6 +180,11 @@ text(Barras_computador+0.1,
      srt = 45,
      pos = 2,
      xpd = TRUE)
+```
+## portatil
+```{r}
+Portatil <- table(encuesta$portatil)
+Portatil
 ```
 
 
@@ -205,8 +216,6 @@ abline(h   = seq(0,100,10),
        )
 
 
-Portatil <- table(encuesta$portatil)
-
 Barras_Portatil <- barplot(Portatil,
                            col       = c("firebrick2", "olivedrab3", "yellow4", "steelblue"),
                 font.axis = 2,
@@ -230,6 +239,13 @@ text(Barras_Portatil+0.1,
      xpd = TRUE)
 
 ```
+
+## internet
+```{r}
+internet <- table(encuesta$internet)
+internet
+```
+
 
 ```{r}
 #Grafica variable internet
@@ -258,7 +274,6 @@ abline(h   = seq(0,100,10),
        
        )
 
-internet <- table(encuesta$internet)
 
 Barras_internet <- barplot(internet,
                            col       = c("firebrick2", "olivedrab3", "yellow4", "steelblue", "tomato3", "springgreen3"),
@@ -282,6 +297,12 @@ text(Barras_internet+0.1,
      pos = 2,
      xpd = TRUE)
 
+```
+
+## smartphone
+```{r}
+Smartphone <- table(encuesta$smartphone)
+Smartphone
 ```
 
 
@@ -312,7 +333,6 @@ abline(h   = seq(0,140,20),
        
        )
 
-Smartphone <- table(encuesta$smartphone)
 
 Barras_smartphone <- barplot(Smartphone,
                            col       = c("firebrick2", "olivedrab3", "yellow4", "steelblue"),
@@ -373,7 +393,7 @@ par(parametros_anterior)
 
 ```
 
-
+## origen covid
 
 ```{r}
 Origen_depurado <- with(encuesta, c(Origen1, Origen2, Origen3))
@@ -444,6 +464,13 @@ los gobiernos del mundo"),
 par(parametros_anterior)
 ```
 
+## estad_gov
+
+```{r}
+Estado_gov <- table(encuesta$estad_gov)
+Estado_gov
+```
+
 ```{r}
 #Grafica variable Estado gov
 
@@ -471,8 +498,6 @@ abline(h   = seq(0,100,10),
        
        )
 
-Estado_gov <- table(encuesta$estad_gov)
-
 Barras_Estado <- barplot(Estado_gov,
                            col = c("olivedrab3", "yellow4"),
                 font.axis = 2,
@@ -498,3 +523,9 @@ text(Barras_Estado+0.1,
 
 
 ```
+
+
+## Papa + computador mesa
+
+
+
