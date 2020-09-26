@@ -299,7 +299,7 @@ plot(seq(0,10, length.out = 60), seq(0,6, length.out = 60), type="n",
      axes      = FALSE,
      xlab      = " ",
      ylab      = "Numero de personas que respondierón ",
-     xlim = c(0,5),
+     xlim = c(0,6),
      ylim = c(0,140)
      )
 
@@ -324,13 +324,13 @@ Barras_smartphone <- barplot(Smartphone,
 axis(2, at = c(),las = 1)
 
 text(Barras_smartphone,
-     c(5, 5, 7, 133),
+     c(5, 5, 5, 7, 133),
      labels = paste(round((Smartphone/sum(Smartphone)*100),1),"%")
      )
 
 text(Barras_smartphone+0.1,
      par("usr")[3],0.4,
-     labels = c("No", "Si, pero alquilado", "Si, pero prestado ","Si, propio"),
+     labels = c("No Respondio", "NO", "Si, pero alquilado", "Si, pero prestado ","Si, propio"),
      srt = 45,
      pos = 2,
      xpd = TRUE)
@@ -338,3 +338,37 @@ text(Barras_smartphone+0.1,
 
 ```
 
+````{r}
+a1 <-
+  table(encuesta$edad)
+a1
+
+```
+
+
+```{r}
+b1 <-
+  a1/sum(a1) * 100
+b1
+
+```
+
+```{r fig.height=8}
+parametros_anterior <- par(no.readonly = TRUE)
+colores <-c("#0c67da")
+b1<- b1[order(b1, decreasing=TRUE)]
+ht <- barplot(b1, 
+        las = 1, 
+        space = 0.2,
+        main = "EDAD",
+        density = 50,
+        ylab = "Cantidad de personas que respondierón",
+        xlab = "Edad (en años)",
+        ylim = c(0,21),
+         col = 1:dim(b1))
+abline(h = seq(0, 20,1 ), col= rep("grey40",8), lty = 3)
+text(ht, c (19.70, 18.1, 13.3, 10.1, 9.3,6,6,5.3,2.8,2.8,2.8,2,1.2,1.2,1.2,1.2,1.2,1.2,1.2,1.2) , labels = paste(round(b1,2),"%"))
+
+par(parametros_anterior)
+
+```
