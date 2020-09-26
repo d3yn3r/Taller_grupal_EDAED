@@ -19,7 +19,10 @@ encuesta <- read.csv2("Encuesta_habitos_dep.csv",
                        dec = ".")
 ```
 
+
+## genero
 ```{r}
+parametros_anterior <- par(no.readonly = TRUE)
 #grafica de variable genero
 
 par(bg="white")
@@ -61,12 +64,23 @@ text(grafica_genero,
      c(45,105),
      labels = paste(round((genero/sum(genero)*100),1),"%")
      )
+
+par(parametros_anterior)
 ```
 
-
+## papa
 
 ```{r}
 papa <- as.numeric(encuesta$PAPA_depurado)
+tabla_papa <- sort(table(papa), decreasing = TRUE)
+j <- cbind(papa)
+k <- summary(papa)
+k
+```
+
+
+```{r}
+parametros_anterior <- par(no.readonly = TRUE)
 
 papa0 <- table(encuesta$PAPA_depurado)
 papa0
@@ -79,52 +93,38 @@ hist(papa, main = "Histograma de Promedio Aritmético Ponderado Acumulado",
      col = "wheat",
      las =1,
      xlim = c(3,5))
+
+par(parametros_anterior)
 ```
 
+## estrato
+
 ```{r}
+estrato <- as.numeric(encuesta$estrato_depurado)
+tabla_estrato <- sort(table(estrato), decreasing = TRUE)
+j <- cbind(estrato)
+k <- summary(estrato)
+k
+
+```
 
 
-par(bg="white")
-plot(seq(0,10, length.out = 60), seq(0,6, length.out = 60), type="n",
-     main   = "Estrato",
-     
-     font.main = 4,
-     font.lab  = 4,
-     cex.main  = 1.1,
-     cex.lab   = 0.8,
-     cex.sub   = 0.8,
-     axes      = FALSE,
-     xlab      = " ",
-     ylab      = "Numero de personas que respondierón ",
-     xlim = c(0,7),
-     ylim = c(0,70)
-     )
+```{r}
+parametros_anterior <- par(no.readonly = TRUE)
 
-rect(par("usr")[1],par("usr")[3],par("usr")[2],par("usr")[4],col="white")
+estrato_tabla <- table(encuesta$estrato_depurado)
+estrato_tabla
 
-abline(h   = seq(0,60,10), 
-       col = rep("grey30",17), 
-       lty = 3,
-       
-       )
+par(bg = "white")
 
-#guardar los datos de la columna en una tabla
-estrato <- table(encuesta$estrato)
+hist(estrato, main = "estrato",
+     xlab = "estrato", ylab = "Frecuencia",
+     border = "black",
+     col = "wheat",
+     las =1,
+     xlim = c(0,5))
 
-#mostramos con barplot la tabla1
-Barras_estrato <- barplot(estrato,
-                col       = c("blue", "yellow4"),
-                font.axis = 2,
-                axes      = FALSE,
-                add       = TRUE,
-                xlim = c(0,5)
-                )
-axis(2, at = c(),las = 1)
-
-text(Barras_estrato,
-     c(4,23,48,63,12),
-     labels = paste(round((estrato/sum(estrato)*100),1),"%")
-     )
+par(parametros_anterior)
 
 ```
 ## computador mesa
@@ -135,7 +135,10 @@ computador_Mesa
 
 
 ```{r}
+parametros_anterior <- par(no.readonly = TRUE)
+
 par(bg="white")
+
 plot(seq(0,10, length.out = 60), seq(0,6, length.out = 60), type="n",
      main   = "Computador de mesa",
      
@@ -169,7 +172,7 @@ Barras_computador <- barplot(computador_Mesa,
                 )
 axis(2, at = c(),las = 1)
 
-text(Barras_estrato,
+text(Barras_computador,
      c(96,7,5,42),
      labels = paste(round((computador_Mesa/sum(computador_Mesa)*100),1),"%")
      )
@@ -180,6 +183,8 @@ text(Barras_computador+0.1,
      srt = 45,
      pos = 2,
      xpd = TRUE)
+
+par(parametros_anterior)
 ```
 ## portatil
 ```{r}
@@ -189,6 +194,7 @@ Portatil
 
 
 ```{r}
+parametros_anterior <- par(no.readonly = TRUE)
 #Grafica variable portatil
 
 par(bg = "white")
@@ -238,6 +244,8 @@ text(Barras_Portatil+0.1,
      pos = 2,
      xpd = TRUE)
 
+par(parametros_anterior)
+
 ```
 
 ## internet
@@ -248,6 +256,7 @@ internet
 
 
 ```{r}
+parametros_anterior <- par(no.readonly = TRUE)
 #Grafica variable internet
 
 par(bg = "white")
@@ -297,6 +306,8 @@ text(Barras_internet+0.1,
      pos = 2,
      xpd = TRUE)
 
+par(parametros_anterior)
+
 ```
 
 ## smartphone
@@ -307,6 +318,7 @@ Smartphone
 
 
 ```{r}
+parametros_anterior <- par(no.readonly = TRUE)
 #Grafica variable Smartphone
 
 par(bg = "white")
@@ -355,10 +367,11 @@ text(Barras_smartphone+0.1,
      srt = 45,
      pos = 2,
      xpd = TRUE)
-
+par(parametros_anterior)
 
 ```
 
+## edad
 ````{r}
 a1 <-
   table(encuesta$edad)
@@ -472,6 +485,7 @@ Estado_gov
 ```
 
 ```{r}
+parametros_anterior <- par(no.readonly = TRUE)
 #Grafica variable Estado gov
 
 par(bg = "white")
@@ -520,12 +534,65 @@ text(Barras_Estado+0.1,
      pos = 2,
      xpd = TRUE)
 
-
+par(parametros_anterior)
 
 ```
 
 
 ## Papa + computador mesa
+
+```{r}
+Computador_mesa1 <- tapply(encuesta$PAPA_depurado, encuesta$computador_mesa, mean, na.rm = TRUE)
+```
+
+```{r fig.height=7, fig.width=8}
+parametros_anterior <- par(no.readonly = TRUE)
+
+par(mar = parametros_anterior$mar + c(16, 10, 0, 0),
+    las = 2,
+    xaxt = "n",
+    yaxt = "n")
+
+with(encuesta, boxplot(PAPA_depurado ~ computador_mesa,
+                       xlab = "",
+                       notch = TRUE,
+                       varwidth = TRUE,
+                       col = c("red", "green", "yellow", "orange")))
+     
+
+title(main = "PAPA con computador de mesa ")
+
+text(1:length(Computador_mesa1),
+     par("usr")[3] - 0.2,
+     labels = names(Computador_mesa1),
+     srt = 45,
+     pos = 2,
+     xpd = TRUE)
+
+text(par("usr")[1] - 0.4,
+     seq(3, max(encuesta$PAPA_depurado, na.rm = TRUE), 
+         0.2),
+     labels = formatC(seq(3, max(encuesta$PAPA_depurado, na.rm = TRUE), 0.2),
+                      digits = 1,
+                      width = 3,
+                      format = "f",
+                      flag = "0"),
+     xpd = TRUE)
+
+axis(side = 2, 
+     at = seq(3, max(encuesta$PAPA_depurado, na.rm = TRUE), 0.2))
+
+mtext("computador de mesa", 
+      las = 1, 
+      side = 1, line = 8)
+abline(h = mean(encuesta$PAPA_depurado, na.rm = TRUE),
+       col = "blue")
+
+par(parametros_anterior)
+```
+
+```
+
 
 
 
