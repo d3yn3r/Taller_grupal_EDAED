@@ -545,6 +545,7 @@ par(parametros_anterior)
 Computador_mesa1 <- tapply(encuesta$PAPA_depurado, encuesta$computador_mesa, mean, na.rm = TRUE)
 ```
 
+
 ```{r fig.height=7, fig.width=8}
 parametros_anterior <- par(no.readonly = TRUE)
 
@@ -591,8 +592,161 @@ abline(h = mean(encuesta$PAPA_depurado, na.rm = TRUE),
 par(parametros_anterior)
 ```
 
+## Papa + portatil
+
+```{r}
+portatil1 <- tapply(encuesta$PAPA_depurado, encuesta$portatil, mean, na.rm = TRUE)
 ```
 
 
+```{r fig.height=7, fig.width=8}
+parametros_anterior <- par(no.readonly = TRUE)
+
+par(mar = parametros_anterior$mar + c(16, 10, 0, 0),
+    las = 2,
+    xaxt = "n",
+    yaxt = "n")
+
+with(encuesta, boxplot(PAPA_depurado ~ portatil,
+                       xlab = "",
+                       notch = TRUE,
+                       varwidth = TRUE,
+                       col = c("red", "green", "yellow", "orange")))
+     
+
+title(main = "PAPA con la variable Portatil")
+
+text(1:length(portatil1),
+     par("usr")[3] - 0.2,
+     labels = names(portatil1),
+     srt = 45,
+     pos = 2,
+     xpd = TRUE)
+
+text(par("usr")[1] - 0.4,
+     seq(3, max(encuesta$PAPA_depurado, na.rm = TRUE), 
+         0.2),
+     labels = formatC(seq(3, max(encuesta$PAPA_depurado, na.rm = TRUE), 0.2),
+                      digits = 1,
+                      width = 3,
+                      format = "f",
+                      flag = "0"),
+     xpd = TRUE)
+
+axis(side = 2, 
+     at = seq(3, max(encuesta$PAPA_depurado, na.rm = TRUE), 0.2))
+
+mtext("portatil", 
+      las = 1, 
+      side = 1, line = 8)
+abline(h = mean(encuesta$PAPA_depurado, na.rm = TRUE),
+       col = "blue")
+
+par(parametros_anterior)
+```
+
+## Papa + internet
+
+```{r}
+Internet1 <- tapply(encuesta$PAPA_depurado, encuesta$internet, mean, na.rm = TRUE)
+```
 
 
+```{r fig.height=7, fig.width=8}
+parametros_anterior <- par(no.readonly = TRUE)
+
+par(mar = parametros_anterior$mar + c(16, 10, 0, 0),
+    las = 2,
+    xaxt = "n",
+    yaxt = "n")
+
+with(encuesta, boxplot(PAPA_depurado ~ internet,
+                       xlab = "",
+                       notch = TRUE,
+                       varwidth = TRUE,
+                       col = c("red", "green", "yellow", "orange")))
+     
+
+title(main = "PAPA con la variable internet")
+
+text(1:length(Internet1),
+     par("usr")[3] - 0.2,
+     labels = names(Internet1),
+     srt = 45,
+     pos = 2,
+     xpd = TRUE)
+
+text(par("usr")[1] - 0.4,
+     seq(3, max(encuesta$PAPA_depurado, na.rm = TRUE), 
+         0.2),
+     labels = formatC(seq(3, max(encuesta$PAPA_depurado, na.rm = TRUE), 0.2),
+                      digits = 1,
+                      width = 3,
+                      format = "f",
+                      flag = "0"),
+     xpd = TRUE)
+
+axis(side = 2, 
+     at = seq(3, max(encuesta$PAPA_depurado, na.rm = TRUE), 0.2))
+
+mtext("INTERNET", 
+      las = 1, 
+      side = 1, line = 8)
+abline(h = mean(encuesta$PAPA_depurado, na.rm = TRUE),
+       col = "blue")
+
+par(parametros_anterior)
+```
+
+## Papa + Smartphone
+
+```{r}
+smartphone1 <- tapply(encuesta$PAPA_depurado, encuesta$smartphone, mean, na.rm = TRUE)
+```
+
+
+```{r fig.height=7, fig.width=8}
+parametros_anterior <- par(no.readonly = TRUE)
+
+par(mar = parametros_anterior$mar + c(16, 10, 0, 0),
+    las = 2,
+    xaxt = "n",
+    yaxt = "n")
+
+with(encuesta, boxplot(PAPA_depurado ~ smartphone,
+                       xlab = "",
+                       notch = TRUE,
+                       varwidth = TRUE,
+                       col = c("red", "green", "yellow", "orange")))
+     
+
+title(main = "PAPA la variable smartphone ")
+
+text(1:length(smartphone1),
+     par("usr")[3] - 0.2,
+     labels = names(smartphone1),
+     srt = 45,
+     pos = 2,
+     xpd = TRUE)
+
+text(par("usr")[1] - 0.4,
+     seq(3, max(encuesta$PAPA_depurado, na.rm = TRUE), 
+         0.2),
+     labels = formatC(seq(3, max(encuesta$PAPA_depurado, na.rm = TRUE), 0.2),
+                      digits = 1,
+                      width = 3,
+                      format = "f",
+                      flag = "0"),
+     xpd = TRUE)
+
+axis(side = 2, 
+     at = seq(3, max(encuesta$PAPA_depurado, na.rm = TRUE), 0.2))
+
+mtext("smartphone", 
+      las = 1, 
+      side = 1, line = 8)
+abline(h = mean(encuesta$PAPA_depurado, na.rm = TRUE),
+       col = "blue")
+
+par(parametros_anterior)
+```
