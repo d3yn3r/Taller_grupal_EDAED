@@ -13,6 +13,7 @@ knitr::opts_chunk$set(echo = FALSE,
 
 
 ```{r}
+library(knitr)
 encuesta <- read.csv2("Encuesta_habitos_dep.csv", 
                        encoding = "UTF-8",
                        dec = ".")
@@ -359,4 +360,31 @@ text(c(30,30,35,40,50,50,50,57,60,65,65,65,72,80,82,83,88,90,102,105,110)+1,graf
 ```{r}
 kable(tabla,col.names = c("Habito","Número de respuestas"))
 ```
+
+
+```{r}
+tabla9<- sort(table(encuesta$aleatorio))
+grafica9<-barplot(tabla9,las=2)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
