@@ -13,6 +13,8 @@ knitr::opts_chunk$set(echo = FALSE,
 
 
 ```{r}
+library(knitr)
+library(ggplot2)
 encuesta <- read.csv2("Encuesta_habitos_dep.csv", 
                        encoding = "UTF-8",
                       header = TRUE,
@@ -68,7 +70,50 @@ text(grafica_genero,
 par(parametros_anterior)
 ```
 
+```{r fig.align='center'}
+kable(genero,col.names = c("Genero","Cantidad de Respuestas"))
+```
+##fecha
+```{r fig.height=8}
+parametros_anterior <- par(no.readonly = TRUE)
+colores <-c("#0c67da")
+b1<- b1[order(b1, decreasing=TRUE)]
+ht <- barplot(b1, 
+        las = 1, 
+        space = 0.2,
+        main = "EDAD SEGUN FECHA DE NACIMIENTO",
+        density = 50,
+        ylab = "Cantidad de personas que respondierón",
+        xlab = "Edad (en años)",
+        ylim = c(0,21),
+         col = 1:dim(b1))
+abline(h = seq(0, 20,1 ), col= rep("grey40",8), lty = 3)
+text(ht, c (19.70, 18.1, 13.3, 10.1, 9.3,6,6,5.3,2.8,2.8,2.8,2,1.2,1.2,1.2,1.2,1.2,1.2,1.2,1.2) , labels = paste(round(b1,2),"%"))
+
+par(parametros_anterior)
+
+```
+```{r}
+kable(table(encuesta$edad),col.names = c("Edad","Número de Respuestas"))
+```
+
+
 ## papa
+
+```{r fig.align='center'}
+param_ant <- par(no.readonly = TRUE)
+par(mar = param_ant$mar + c(0, 2, 0, 0))
+plot(c(3, 5), c(0, 20), type = "n", xlab = "", ylab = "",
+     las = 1)
+title(main = "Distribución del PAPA",
+     xlab = "Promedio Académico Ponderado Acumulado",
+     ylab = "Número de estudiantes")
+abline(h = seq(0, 20, 2), col = "gray15", lty = 9)
+hist(encuesta$PAPA, nclass = 20,
+     col = "lightblue",
+     add = TRUE)
+par(param_ant)
+```
 
 ```{r}
 papa <- as.numeric(encuesta$PAPA_depurado)
@@ -76,44 +121,20 @@ tabla_papa <- sort(table(papa), decreasing = TRUE)
 j <- cbind(papa)
 k <- summary(papa)
 k
+
 ```
 
-
-```{r}
-parametros_anterior <- par(no.readonly = TRUE)
-
-papa0 <- table(encuesta$PAPA_depurado)
-papa0
-
-par(bg = "white")
-
-hist(papa, main = "Histograma de Promedio Aritmético Ponderado Acumulado",
-     xlab = "Años", ylab = "Frecuencia",
-     border = "black",
-     col = "wheat",
-     las =1,
-     xlim = c(3,5))
-
-par(parametros_anterior)
+```{r fig.align='center'}
+kable(table(encuesta$PAPA),col.names = c("PAPA","Frecuencia"))
 ```
+
 
 ## estrato
-
-```{r}
-estrato <- as.numeric(encuesta$estrato_depurado)
-tabla_estrato <- sort(table(estrato), decreasing = TRUE)
-j <- cbind(estrato)
-k <- summary(estrato)
-k
-
-```
-
 
 ```{r}
 parametros_anterior <- par(no.readonly = TRUE)
 
 estrato_tabla <- table(encuesta$estrato_depurado)
-estrato_tabla
 
 par(bg = "white")
 
@@ -127,10 +148,23 @@ hist(estrato, main = "estrato",
 par(parametros_anterior)
 
 ```
+
+```{r}
+estrato <- as.numeric(encuesta$estrato_depurado)
+tabla_estrato <- sort(table(estrato), decreasing = TRUE)
+j <- cbind(estrato)
+k <- summary(estrato)
+k
+```
+
+```{r fig.align='center'}
+kable(estrato_tabla,col.names = c("Estrato","Respuestas"))
+```
+
+
 ## computador mesa
 ```{r}
 computador_Mesa <- table(encuesta$computador_mesa)
-computador_Mesa
 ```
 
 
@@ -186,10 +220,15 @@ text(Barras_computador+0.1,
 
 par(parametros_anterior)
 ```
+
+
+```{r fig.align='center'}
+kable(computador_Mesa,col.names = c("Repuesta","Cantidad de Respuestas"))
+```
+
 ## portatil
 ```{r}
 Portatil <- table(encuesta$portatil)
-Portatil
 ```
 
 
@@ -248,10 +287,13 @@ par(parametros_anterior)
 
 ```
 
+```{r fig.align='center'}
+kable(Portatil,col.names = c("Respuesta","Cantidad de respuestas"))
+```
+
 ## internet
 ```{r}
 internet <- table(encuesta$internet)
-internet
 ```
 
 
@@ -310,10 +352,14 @@ par(parametros_anterior)
 
 ```
 
+
+```{r fig.align='center'}
+kable(internet,col.names = c("Respuestas","Cantidad de respuestas"))
+```
+
 ## smartphone
 ```{r}
 Smartphone <- table(encuesta$smartphone)
-Smartphone
 ```
 
 
@@ -371,47 +417,79 @@ par(parametros_anterior)
 
 ```
 
-## edad
-````{r}
-a1 <-
-  table(encuesta$edad)
-a1
-
+```{r fig.align='center'}
+kable(Smartphone,col.names = c("Repsuesta","cantidad de respuestas"))
 ```
-
+## estad_gov
 
 ```{r}
-b1 <- a1/sum(a1) * 100
-b1
-
+Estado_gov <- table(encuesta$estad_gov)
 ```
 
-```{r fig.height=8}
+```{r}
 parametros_anterior <- par(no.readonly = TRUE)
-colores <-c("#0c67da")
-b1<- b1[order(b1, decreasing=TRUE)]
-ht <- barplot(b1, 
-        las = 1, 
-        space = 0.2,
-        main = "EDAD",
-        density = 50,
-        ylab = "Cantidad de personas que respondierón",
-        xlab = "Edad (en años)",
-        ylim = c(0,21),
-         col = 1:dim(b1))
-abline(h = seq(0, 20,1 ), col= rep("grey40",8), lty = 3)
-text(ht, c (19.70, 18.1, 13.3, 10.1, 9.3,6,6,5.3,2.8,2.8,2.8,2,1.2,1.2,1.2,1.2,1.2,1.2,1.2,1.2) , labels = paste(round(b1,2),"%"))
+#Grafica variable Estado gov
+
+par(bg = "white")
+plot(seq(0,10, length.out = 60), seq(0,6, length.out = 60), type="n",
+     main   = "Estado Gov",
+     
+     font.main = 4,
+     font.lab  = 4,
+     cex.main  = 1.1,
+     cex.lab   = 0.8,
+     cex.sub   = 0.8,
+     axes      = FALSE,
+     xlab      = " ",
+     ylab      = "Numero de personas que respondierón ",
+     xlim = c(0,4),
+     ylim = c(0,100)
+     )
+
+rect(par("usr")[1],par("usr")[3],par("usr")[2],par("usr")[4],col="white")
+
+abline(h   = seq(0,100,10), 
+       col = rep("grey30",17), 
+       lty = 3,
+       
+       )
+
+Barras_Estado <- barplot(Estado_gov,
+                           col = c("olivedrab3", "yellow4"),
+                font.axis = 2,
+                axes      = FALSE,
+                add       = TRUE,
+                xlim = c(0,5),
+                names.arg = ""
+                )
+axis(2, at = c(),las = 1)
+
+text(Barras_Estado,
+     c(5, 5),
+     labels = paste(round((Estado_gov/sum(Estado_gov)*100),1),"%")
+     )
+
+text(Barras_Estado+0.1,
+     par("usr")[3],0.4,
+     labels = c("No", "No respindio", "si"),
+     srt = 45,
+     pos = 2,
+     xpd = TRUE)
 
 par(parametros_anterior)
 
 ```
+
+```{r}
+kable(Estado_gov,col.names = c("Respuesta","Número de Respuestas"))
+```
+
 
 ## origen covid
 
 ```{r}
 Origen_depurado <- with(encuesta, c(Origen1, Origen2, Origen3))
 origen <- sort(table(Origen_depurado), decreasing = TRUE)
-origen
 ```
 
 ```{r}
@@ -477,67 +555,71 @@ los gobiernos del mundo"),
 par(parametros_anterior)
 ```
 
-## estad_gov
-
 ```{r}
-Estado_gov <- table(encuesta$estad_gov)
-Estado_gov
+kable(origen,col.names = c("Origen","Respuestas"))
 ```
+##habitos
+```{r fig.align='center'}
+combinar<- with(encuesta, c(habito_1,habito_2,habito_3,habito_4
+                          ,habito_5,habito_6,habito_7,habito_8,habito_9
+                          ,habito_10,habito_11,habito_12,habito_13,habito_14
+                          ,habito_15,habito_16,habito_17))
 
-```{r}
-parametros_anterior <- par(no.readonly = TRUE)
-#Grafica variable Estado gov
+tabla <- sort(table(combinar))
+par(mar=c(4,23.9,1,1))
+graficaber <-barplot(tabla, las = 2, cex.names = 0.7,cex.axis = 1,horiz = TRUE,xlim = c(0,130),
+                     col = c("cyan","darkred","blue","yellow","violet","tomato"))
 
-par(bg = "white")
-plot(seq(0,10, length.out = 60), seq(0,6, length.out = 60), type="n",
-     main   = "Estado Gov",
-     
-     font.main = 4,
-     font.lab  = 4,
-     cex.main  = 1.1,
-     cex.lab   = 0.8,
-     cex.sub   = 0.8,
-     axes      = FALSE,
-     xlab      = " ",
-     ylab      = "Numero de personas que respondierón ",
-     xlim = c(0,4),
-     ylim = c(0,100)
+text(c(25,34,35,44,50,55,55,60,60,68,68,70,78,80,85,85,91,93,105,108,113)+1,graficaber,
+     labels = paste(round(tabla/sum(tabla)*100,2),"%")
      )
 
-rect(par("usr")[1],par("usr")[3],par("usr")[2],par("usr")[4],col="white")
-
-abline(h   = seq(0,100,10), 
-       col = rep("grey30",17), 
-       lty = 3,
-       
-       )
-
-Barras_Estado <- barplot(Estado_gov,
-                           col = c("olivedrab3", "yellow4"),
-                font.axis = 2,
-                axes      = FALSE,
-                add       = TRUE,
-                xlim = c(0,5),
-                names.arg = ""
-                )
-axis(2, at = c(),las = 1)
-
-text(Barras_Estado,
-     c(5, 5),
-     labels = paste(round((Estado_gov/sum(Estado_gov)*100),1),"%")
-     )
-
-text(Barras_Estado+0.1,
-     par("usr")[3],0.4,
-     labels = c("No", "No respindio", "si"),
-     srt = 45,
-     pos = 2,
-     xpd = TRUE)
-
-par(parametros_anterior)
 
 ```
 
+```{r fig.align='center'}
+kable(tabla,col.names = c("Habito","Número de respuestas"))
+```
+##aleatorio
+```{r fig.align='center'}
+tabla9<- sort(table(encuesta$aleatorio))
+grafica9<-barplot(tabla9,las=2,col = c("cyan","darkred","blue","yellow","violet","tomato"),ylim = c(0,40))
+
+text(grafica9,
+     c(3,8,10,10,11,12,12,15,16,21,36),
+     labels = paste(round((tabla9/sum(tabla9)*100),1),"%")
+     )
+```
+```{r}
+kable(tabla9,col.names = c("Valor Aleatorio","Frecuencia"))
+```
+
+## papa + genero
+
+```{r fig.align='center'}
+ggplot(encuesta, aes(PAPA, genero,col = genero)) +
+  geom_point(size = 2) +
+  geom_smooth(se = FALSE)
+```
+## papa + edad
+```{r,fig.height=7, fig.width=9,fig.align='center'}
+ggplot(encuesta ,aes(x=edad,y=PAPA,col=PAPA))+
+  geom_point(size = 2)+theme(axis.text.x = element_text(angle = 90, hjust = 1))
+
+```
+## papa + carrera
+```{r fig.align='center'}
+ggplot(encuesta, aes(PAPA, Carrera_depurada,col = Carrera_depurada)) +
+  geom_point(size = 2) +
+  geom_smooth(se = FALSE)
+```
+
+## papa + estrato
+```{r fig.align='center'}
+ggplot(encuesta, aes(PAPA, estrato,col = PAPA)) +
+  geom_point(size = 2) +
+  geom_smooth(se = FALSE)
+```
 
 ## Papa + computador mesa
 
@@ -750,3 +832,11 @@ abline(h = mean(encuesta$PAPA_depurado, na.rm = TRUE),
 
 par(parametros_anterior)
 ```
+
+
+
+
+
+
+
+
