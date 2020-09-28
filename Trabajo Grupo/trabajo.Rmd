@@ -1,6 +1,6 @@
 ---
 title: "trabajo"
-author: "Deyner Lopez Pineda"
+author: "Deyner Lopez Pineda Maria Daysi Hadeil"
 date: "18/9/2020"
 output: html_document
 ---
@@ -23,7 +23,7 @@ encuesta <- read.csv2("Encuesta_habitos_dep.csv",
 
 
 ## genero
-```{r}
+```{r fig.align='center'}
 parametros_anterior <- par(no.readonly = TRUE)
 #grafica de variable genero
 
@@ -73,8 +73,17 @@ par(parametros_anterior)
 ```{r fig.align='center'}
 kable(genero,col.names = c("Genero","Cantidad de Respuestas"))
 ```
-##fecha
-```{r fig.height=8}
+## fecha
+
+```{r}
+a1 <-table(encuesta$edad)
+```
+
+```{r}
+b1 <-a1/sum(a1) * 100
+```
+
+```{r fig.align='center', fig.height=7, fig.width=15}
 parametros_anterior <- par(no.readonly = TRUE)
 colores <-c("#0c67da")
 b1<- b1[order(b1, decreasing=TRUE)]
@@ -131,7 +140,9 @@ kable(table(encuesta$PAPA),col.names = c("PAPA","Frecuencia"))
 
 ## estrato
 
-```{r}
+```{r fig.align='center'}
+estrato <- as.numeric(encuesta$estrato_depurado)
+tabla_estrato <- sort(table(estrato), decreasing = TRUE)
 parametros_anterior <- par(no.readonly = TRUE)
 
 estrato_tabla <- table(encuesta$estrato_depurado)
@@ -150,8 +161,6 @@ par(parametros_anterior)
 ```
 
 ```{r}
-estrato <- as.numeric(encuesta$estrato_depurado)
-tabla_estrato <- sort(table(estrato), decreasing = TRUE)
 j <- cbind(estrato)
 k <- summary(estrato)
 k
@@ -168,7 +177,7 @@ computador_Mesa <- table(encuesta$computador_mesa)
 ```
 
 
-```{r}
+```{r fig.align='center'}
 parametros_anterior <- par(no.readonly = TRUE)
 
 par(bg="white")
@@ -227,12 +236,12 @@ kable(computador_Mesa,col.names = c("Repuesta","Cantidad de Respuestas"))
 ```
 
 ## portatil
-```{r}
+```{r fig.align='center'}
 Portatil <- table(encuesta$portatil)
 ```
 
 
-```{r}
+```{r fig.align='center'}
 parametros_anterior <- par(no.readonly = TRUE)
 #Grafica variable portatil
 
@@ -292,12 +301,12 @@ kable(Portatil,col.names = c("Respuesta","Cantidad de respuestas"))
 ```
 
 ## internet
-```{r}
+```{r fig.align='center'}
 internet <- table(encuesta$internet)
 ```
 
 
-```{r}
+```{r fig.align='center'}
 parametros_anterior <- par(no.readonly = TRUE)
 #Grafica variable internet
 
@@ -358,12 +367,12 @@ kable(internet,col.names = c("Respuestas","Cantidad de respuestas"))
 ```
 
 ## smartphone
-```{r}
+```{r fig.align='center'}
 Smartphone <- table(encuesta$smartphone)
 ```
 
 
-```{r}
+```{r fig.align='center'}
 parametros_anterior <- par(no.readonly = TRUE)
 #Grafica variable Smartphone
 
@@ -422,11 +431,11 @@ kable(Smartphone,col.names = c("Repsuesta","cantidad de respuestas"))
 ```
 ## estad_gov
 
-```{r}
+```{r fig.align='center'}
 Estado_gov <- table(encuesta$estad_gov)
 ```
 
-```{r}
+```{r fig.align='center'}
 parametros_anterior <- par(no.readonly = TRUE)
 #Grafica variable Estado gov
 
@@ -480,19 +489,19 @@ par(parametros_anterior)
 
 ```
 
-```{r}
+```{r fig.align='center'}
 kable(Estado_gov,col.names = c("Respuesta","Número de Respuestas"))
 ```
 
 
 ## origen covid
 
-```{r}
+```{r fig.align='center'}
 Origen_depurado <- with(encuesta, c(Origen1, Origen2, Origen3))
 origen <- sort(table(Origen_depurado), decreasing = TRUE)
 ```
 
-```{r}
+```{r fig.align='center'}
 #Grafica variable Origen covid 19
 
 parametros_anterior <- par(no.readonly = TRUE)
@@ -555,10 +564,10 @@ los gobiernos del mundo"),
 par(parametros_anterior)
 ```
 
-```{r}
+```{r fig.align='center'}
 kable(origen,col.names = c("Origen","Respuestas"))
 ```
-##habitos
+## habitos
 ```{r fig.align='center'}
 combinar<- with(encuesta, c(habito_1,habito_2,habito_3,habito_4
                           ,habito_5,habito_6,habito_7,habito_8,habito_9
@@ -580,7 +589,7 @@ text(c(25,34,35,44,50,55,55,60,60,68,68,70,78,80,85,85,91,93,105,108,113)+1,graf
 ```{r fig.align='center'}
 kable(tabla,col.names = c("Habito","Número de respuestas"))
 ```
-##aleatorio
+## aleatorio
 ```{r fig.align='center'}
 tabla9<- sort(table(encuesta$aleatorio))
 grafica9<-barplot(tabla9,las=2,col = c("cyan","darkred","blue","yellow","violet","tomato"),ylim = c(0,40))
@@ -590,7 +599,7 @@ text(grafica9,
      labels = paste(round((tabla9/sum(tabla9)*100),1),"%")
      )
 ```
-```{r}
+```{r fig.align='center'}
 kable(tabla9,col.names = c("Valor Aleatorio","Frecuencia"))
 ```
 
@@ -601,13 +610,17 @@ ggplot(encuesta, aes(PAPA, genero,col = genero)) +
   geom_point(size = 2) +
   geom_smooth(se = FALSE)
 ```
+
 ## papa + edad
+
 ```{r,fig.height=7, fig.width=9,fig.align='center'}
 ggplot(encuesta ,aes(x=edad,y=PAPA,col=PAPA))+
   geom_point(size = 2)+theme(axis.text.x = element_text(angle = 90, hjust = 1))
 
 ```
+
 ## papa + carrera
+
 ```{r fig.align='center'}
 ggplot(encuesta, aes(PAPA, Carrera_depurada,col = Carrera_depurada)) +
   geom_point(size = 2) +
@@ -623,12 +636,12 @@ ggplot(encuesta, aes(PAPA, estrato,col = PAPA)) +
 
 ## Papa + computador mesa
 
-```{r}
+```{r fig.align='center'}
 Computador_mesa1 <- tapply(encuesta$PAPA_depurado, encuesta$computador_mesa, mean, na.rm = TRUE)
 ```
 
 
-```{r fig.height=7, fig.width=8}
+```{r fig.height=7, fig.width=8,fig.align='center'}
 parametros_anterior <- par(no.readonly = TRUE)
 
 par(mar = parametros_anterior$mar + c(16, 10, 0, 0),
@@ -676,12 +689,12 @@ par(parametros_anterior)
 
 ## Papa + portatil
 
-```{r}
+```{r fig.align='center'}
 portatil1 <- tapply(encuesta$PAPA_depurado, encuesta$portatil, mean, na.rm = TRUE)
 ```
 
 
-```{r fig.height=7, fig.width=8}
+```{r fig.height=7, fig.width=8,fig.align='center'}
 parametros_anterior <- par(no.readonly = TRUE)
 
 par(mar = parametros_anterior$mar + c(16, 10, 0, 0),
@@ -729,12 +742,12 @@ par(parametros_anterior)
 
 ## Papa + internet
 
-```{r}
+```{r fig.align='center'}
 Internet1 <- tapply(encuesta$PAPA_depurado, encuesta$internet, mean, na.rm = TRUE)
 ```
 
 
-```{r fig.height=7, fig.width=8}
+```{r fig.height=7, fig.width=8, fig.align='center'}
 parametros_anterior <- par(no.readonly = TRUE)
 
 par(mar = parametros_anterior$mar + c(16, 10, 0, 0),
@@ -782,12 +795,12 @@ par(parametros_anterior)
 
 ## Papa + Smartphone
 
-```{r}
+```{r fig.align='center'}
 smartphone1 <- tapply(encuesta$PAPA_depurado, encuesta$smartphone, mean, na.rm = TRUE)
 ```
 
 
-```{r fig.height=7, fig.width=8}
+```{r fig.height=7, fig.width=8, fig.align='center'}
 parametros_anterior <- par(no.readonly = TRUE)
 
 par(mar = parametros_anterior$mar + c(16, 10, 0, 0),
