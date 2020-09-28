@@ -626,7 +626,7 @@ text(grafica9,
 ## papa + genero
 
 ```{r fig.align='center'}
-ggplot(encuesta, aes(PAPA, genero,col = genero)) +
+ggplot(encuesta, aes(genero,PAPA,col = genero)) +
   geom_point(size = 2) +
   geom_smooth(se = FALSE)
 ```
