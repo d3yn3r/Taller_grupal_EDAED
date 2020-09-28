@@ -63,19 +63,27 @@ text(grafica_genero,
      )
 ```
 
+```{r}
+kable(genero,col.names = c("Genero","Cantidad de Respuestas"))
+```
 
 
 ```{r}
-papa <- as.numeric(encuesta$PAPA)
-
-par(bg = "white")
-
-hist(papa, main = "Histograma de Promedio Aritmético Ponderado Acumulado",
-     xlab = "Años", ylab = "Frecuencia",
-     border = "black",
-     col = "wheat",
-     las =1,
-     xlim = c(3,5))
+param_ant <- par(no.readonly = TRUE)
+par(mar = param_ant$mar + c(0, 2, 0, 0))
+plot(c(3, 5), c(0, 20), type = "n", xlab = "", ylab = "",
+     las = 1)
+title(main = "Distribución del PAPA",
+     xlab = "Promedio Académico Ponderado Acumulado",
+     ylab = "Número de estudiantes")
+abline(h = seq(0, 20, 2), col = "gray15", lty = 9)
+hist(encuesta$PAPA, nclass = 20,
+     col = "lightblue",
+     add = TRUE)
+par(param_ant)
+```
+```{r}
+kable(table(papa),col.names = c("PAPA","Frecuencia"))
 ```
 
 ```{r}
@@ -124,6 +132,12 @@ text(Barras_estrato,
      )
 
 ```
+
+
+```{r}
+kable(estrato,col.names = c("Estrato","Respuestas"))
+```
+
 ```{r}
 par(bg="white")
 plot(seq(0,10, length.out = 60), seq(0,6, length.out = 60), type="n",
@@ -175,6 +189,10 @@ text(Barras_computador+0.1,
      pos = 2,
      xpd = TRUE)
 ```
+```{r}
+kable(computador_Mesa,col.names = c("Repuesta","Cantidad de Respuestas"))
+```
+
 
 
 ```{r}
@@ -230,6 +248,10 @@ text(Barras_Portatil+0.1,
      xpd = TRUE)
 
 ```
+```{r}
+kable(Portatil,col.names = c("Respuesta","Cantidad de respuestas"))
+```
+
 
 ```{r}
 #Grafica variable internet
@@ -282,6 +304,9 @@ text(Barras_internet+0.1,
      pos = 2,
      xpd = TRUE)
 
+```
+```{r}
+kable(internet,col.names = c("Respuestas","Cantidad de respuestas"))
 ```
 
 
@@ -337,6 +362,9 @@ text(Barras_smartphone+0.1,
      xpd = TRUE)
 
 
+```
+```{r}
+kable(Smartphone,col.names = c("Repsuesta","cantidad de respuestas"))
 ```
 
 
@@ -396,23 +424,15 @@ ggplot(encuesta, aes(PAPA, genero,col = genero)) +
   geom_smooth(se = FALSE)
 ```
 
-```{r}
-kable(table(encuesta$genero) , col.names = c("Genero","Número de Respuestas"))
-```
-
-
-
-
-
-```{r}
-p1<-ggplot2(encuesta)
-
+```{r,fig.height=10, fig.width=20}
+ggplot(encuesta ,aes(x=Fecha_depurada,y=PAPA))+
+  geom_point(size = 1)+theme(axis.text.x = element_text(angle = 90, hjust = 1))
 
 ```
 
 
 ```{r}
-kable(sort(table(encuesta$Fecha_depurada)),descreasing=FALSE)
+kable(sort(table(encuesta$Fecha_depurada)),descreasing=FALSE,col.names = c("Fecha","Cantidad de respuestas"))
 ```
 
 
