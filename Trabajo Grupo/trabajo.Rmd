@@ -614,16 +614,18 @@ par(parametros_anterior)
 ## habitos
 
 ```{r fig.align='center'}
-kable(tabla,col.names = c("Habito","Número de respuestas"))
-```
-
-```{r fig.align='center'}
 combinar<- with(encuesta, c(habito_1,habito_2,habito_3,habito_4
                           ,habito_5,habito_6,habito_7,habito_8,habito_9
                           ,habito_10,habito_11,habito_12,habito_13,habito_14
                           ,habito_15,habito_16,habito_17))
 
 tabla <- sort(table(combinar))
+kable(tabla,col.names = c("Habito","Número de respuestas"))
+
+```
+
+```{r fig.align='center'}
+
 par(mar=c(4,23.9,1,1))
 graficaber <-barplot(tabla, las = 2, cex.names = 0.7,cex.axis = 1,horiz = TRUE,xlim = c(0,130),
                      col = c("cyan","darkred","blue","yellow","violet","tomato"))
