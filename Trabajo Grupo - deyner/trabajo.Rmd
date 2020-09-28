@@ -348,9 +348,10 @@ combinar<- with(encuesta, c(habito_1,habito_2,habito_3,habito_4
 
 tabla <- sort(table(combinar))
 par(mar=c(4,23.9,1,1))
-graficaber <-barplot(tabla, las = 2, cex.names = 0.7,cex.axis = 1,horiz = TRUE,xlim = c(0,130))
+graficaber <-barplot(tabla, las = 2, cex.names = 0.7,cex.axis = 1,horiz = TRUE,xlim = c(0,130),
+                     col = c("cyan","darkred","blue","yellow","violet","tomato"))
 
-text(c(30,30,35,40,50,50,50,57,60,65,65,65,72,80,82,83,88,90,102,105,110)+1,graficaber,
+text(c(25,34,35,44,50,55,55,60,60,68,68,70,78,80,85,85,91,93,105,108,113)+1,graficaber,
      labels = paste(round(tabla/sum(tabla)*100,2),"%")
      )
 
@@ -365,23 +366,58 @@ kable(tabla,col.names = c("Habito","Número de respuestas"))
 ```{r}
 tabla9<- sort(table(encuesta$aleatorio))
 grafica9<-barplot(tabla9,las=2)
+
+
+```
+
+
+```{r}
+#falta reemplazar el primer valor, ya que no recuerdo por cual se debe cambiar, tambien se puede hacer en la base de datos directamente.
+kable(tabla9,col.names = c("Número","Cantidad de apariciones"))
+```
+```{r}
+#relacionar papa con las variables
+#Deyner:
+
+#Género (Listo)
+#Fecha nacimiento
+#Carrera
+#Estrato (Listo)
+library(ggplot2)
+ggplot(encuesta, aes(PAPA, estrato,col = PAPA)) +
+  geom_point(size = 2) +
+  geom_smooth(se = FALSE)
+```
+
+
+```{r}
+ggplot(encuesta, aes(PAPA, genero,col = genero)) +
+  geom_point(size = 2) +
+  geom_smooth(se = FALSE)
 ```
 
 
 
 
 
+```{r}
+fecha<-as.numeric(encuesta$Fecha_depurada)
+tabla12<-table(encuesta$PAPA)
+tabla13<-table(encuesta$Fecha_depurada)
+
+tabla13
+```
 
 
+```{r}
+ggplot(encuesta, aes(PAPA, Carrera_depurada,col = Carrera_depurada)) +
+  geom_point(size = 2) +
+  geom_smooth(se = FALSE)
+```
 
-
-
-
-
-
-
-
-
+```{r}
+kable(table(encuesta$Carrera_depurada),col.names = c("Carrera","Cantidad de estudiantes por carrera"))
+```
 
 
 
