@@ -396,17 +396,25 @@ ggplot(encuesta, aes(PAPA, genero,col = genero)) +
   geom_smooth(se = FALSE)
 ```
 
+```{r}
+kable(table(encuesta$genero) , col.names = c("Genero","Número de Respuestas"))
+```
+
 
 
 
 
 ```{r}
-fecha<-as.numeric(encuesta$Fecha_depurada)
-tabla12<-table(encuesta$PAPA)
-tabla13<-table(encuesta$Fecha_depurada)
+p1<-ggplot2(encuesta)
 
-tabla13
+
 ```
+
+
+```{r}
+kable(sort(table(encuesta$Fecha_depurada)),descreasing=FALSE)
+```
+
 
 
 ```{r}
