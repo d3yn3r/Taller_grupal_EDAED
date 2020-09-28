@@ -432,7 +432,7 @@ ggplot(encuesta ,aes(x=edad,y=PAPA,col=PAPA))+
 
 
 ```{r fig.align='center'}
-kable(sort(table(encuesta$Fecha_depurada)),descreasing=FALSE,col.names = c("Fecha","Cantidad de respuestas"))
+kable(sort(table(encuesta$edad)),descreasing=FALSE,col.names = c("Fecha","Cantidad de respuestas"))
 ```
 
 
