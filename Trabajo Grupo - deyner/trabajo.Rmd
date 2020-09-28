@@ -19,7 +19,7 @@ encuesta <- read.csv2("Encuesta_habitos_dep.csv",
                        dec = ".")
 ```
 
-```{r}
+```{r fig.align='center'}
 #grafica de variable genero
 
 par(bg="white")
@@ -63,12 +63,12 @@ text(grafica_genero,
      )
 ```
 
-```{r}
+```{r fig.align='center'}
 kable(genero,col.names = c("Genero","Cantidad de Respuestas"))
 ```
 
 
-```{r}
+```{r fig.align='center'}
 param_ant <- par(no.readonly = TRUE)
 par(mar = param_ant$mar + c(0, 2, 0, 0))
 plot(c(3, 5), c(0, 20), type = "n", xlab = "", ylab = "",
@@ -82,11 +82,11 @@ hist(encuesta$PAPA, nclass = 20,
      add = TRUE)
 par(param_ant)
 ```
-```{r}
-kable(table(papa),col.names = c("PAPA","Frecuencia"))
+```{r fig.align='center'}
+kable(table(encuesta$PAPA),col.names = c("PAPA","Frecuencia"))
 ```
 
-```{r}
+```{r fig.align='center'}
 
 
 par(bg="white")
@@ -134,11 +134,11 @@ text(Barras_estrato,
 ```
 
 
-```{r}
+```{r fig.align='center'}
 kable(estrato,col.names = c("Estrato","Respuestas"))
 ```
 
-```{r}
+```{r fig.align='center'}
 par(bg="white")
 plot(seq(0,10, length.out = 60), seq(0,6, length.out = 60), type="n",
      main   = "Computador de mesa",
@@ -189,13 +189,13 @@ text(Barras_computador+0.1,
      pos = 2,
      xpd = TRUE)
 ```
-```{r}
+```{r fig.align='center'}
 kable(computador_Mesa,col.names = c("Repuesta","Cantidad de Respuestas"))
 ```
 
 
 
-```{r}
+```{r fig.align='center'}
 #Grafica variable portatil
 
 par(bg = "white")
@@ -248,12 +248,12 @@ text(Barras_Portatil+0.1,
      xpd = TRUE)
 
 ```
-```{r}
+```{r fig.align='center'}
 kable(Portatil,col.names = c("Respuesta","Cantidad de respuestas"))
 ```
 
 
-```{r}
+```{r fig.align='center'}
 #Grafica variable internet
 
 par(bg = "white")
@@ -305,12 +305,12 @@ text(Barras_internet+0.1,
      xpd = TRUE)
 
 ```
-```{r}
+```{r fig.align='center'}
 kable(internet,col.names = c("Respuestas","Cantidad de respuestas"))
 ```
 
 
-```{r}
+```{r fig.align='center'}
 #Grafica variable Smartphone
 
 par(bg = "white")
@@ -363,12 +363,12 @@ text(Barras_smartphone+0.1,
 
 
 ```
-```{r}
+```{r fig.align='center'}
 kable(Smartphone,col.names = c("Repsuesta","cantidad de respuestas"))
 ```
 
 
-```{r}
+```{r fig.align='center'}
 combinar<- with(encuesta, c(habito_1,habito_2,habito_3,habito_4
                           ,habito_5,habito_6,habito_7,habito_8,habito_9
                           ,habito_10,habito_11,habito_12,habito_13,habito_14
@@ -386,12 +386,12 @@ text(c(25,34,35,44,50,55,55,60,60,68,68,70,78,80,85,85,91,93,105,108,113)+1,graf
 
 ```
 
-```{r}
+```{r fig.align='center'}
 kable(tabla,col.names = c("Habito","Número de respuestas"))
 ```
 
 
-```{r}
+```{r fig.align='center'}
 tabla9<- sort(table(encuesta$aleatorio))
 grafica9<-barplot(tabla9,las=2)
 
@@ -399,11 +399,11 @@ grafica9<-barplot(tabla9,las=2)
 ```
 
 
-```{r}
+```{r fig.align='center'}
 #falta reemplazar el primer valor, ya que no recuerdo por cual se debe cambiar, tambien se puede hacer en la base de datos directamente.
 kable(tabla9,col.names = c("Número","Cantidad de apariciones"))
 ```
-```{r}
+```{r fig.align='center'}
 #relacionar papa con las variables
 #Deyner:
 
@@ -418,32 +418,32 @@ ggplot(encuesta, aes(PAPA, estrato,col = PAPA)) +
 ```
 
 
-```{r}
+```{r fig.align='center'}
 ggplot(encuesta, aes(PAPA, genero,col = genero)) +
   geom_point(size = 2) +
   geom_smooth(se = FALSE)
 ```
 
-```{r,fig.height=10, fig.width=20}
+```{r,fig.height=10, fig.width=20,fig.align='center'}
 ggplot(encuesta ,aes(x=Fecha_depurada,y=PAPA))+
   geom_point(size = 1)+theme(axis.text.x = element_text(angle = 90, hjust = 1))
 
 ```
 
 
-```{r}
+```{r fig.align='center'}
 kable(sort(table(encuesta$Fecha_depurada)),descreasing=FALSE,col.names = c("Fecha","Cantidad de respuestas"))
 ```
 
 
 
-```{r}
+```{r fig.align='center'}
 ggplot(encuesta, aes(PAPA, Carrera_depurada,col = Carrera_depurada)) +
   geom_point(size = 2) +
   geom_smooth(se = FALSE)
 ```
 
-```{r}
+```{r fig.align='center'}
 kable(table(encuesta$Carrera_depurada),col.names = c("Carrera","Cantidad de estudiantes por carrera"))
 ```
 
