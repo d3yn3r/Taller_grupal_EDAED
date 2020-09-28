@@ -71,7 +71,9 @@ text(grafica_genero,
 
 par(parametros_anterior)
 ```
+<analisis>
 
+</analisis>
 
 ## fecha
 
@@ -107,7 +109,9 @@ par(parametros_anterior)
 
 ```
 
+<analisis>
 
+</analisis>
 
 ## papa
 
@@ -130,6 +134,10 @@ hist(encuesta$PAPA, nclass = 20,
 par(param_ant)
 ```
 
+
+<resumen numerico>
+
+</resumen numerico>
 ```{r}
 papa <- as.numeric(encuesta$PAPA_depurado)
 tabla_papa <- sort(table(papa), decreasing = TRUE)
@@ -140,7 +148,9 @@ k
 ```
 
 
+<analisis>
 
+</analisis>
 
 ## estrato
 
@@ -175,7 +185,13 @@ j <- cbind(estrato)
 k <- summary(estrato)
 k
 ```
+<resuemn numerico>
 
+</resumen numerico>
+
+<analisis>
+
+</analisis>
 
 
 ## computador mesa
@@ -239,7 +255,9 @@ text(Barras_computador+0.1,
 par(parametros_anterior)
 ```
 
+<analisis>
 
+</analisis>
 
 
 ## portatil
@@ -306,7 +324,9 @@ par(parametros_anterior)
 
 ```
 
+<analisis>
 
+</analisis>
 
 ## internet
 ```{r fig.align='center'}
@@ -372,7 +392,9 @@ par(parametros_anterior)
 
 ```
 
+<analisis>
 
+</analisis>
 
 
 ## smartphone
@@ -438,6 +460,9 @@ par(parametros_anterior)
 
 ```
 
+<analisis>
+
+</analisis>
 
 ## estad_gov
 
@@ -504,7 +529,9 @@ par(parametros_anterior)
 ```
 
 
+<analisis>
 
+</analisis>
 
 ## origen covid
 
@@ -580,6 +607,9 @@ los gobiernos del mundo"),
 par(parametros_anterior)
 ```
 
+<analisis>
+
+</analisis>
 
 ## habitos
 
@@ -605,6 +635,9 @@ text(c(25,34,35,44,50,55,55,60,60,68,68,70,78,80,85,85,91,93,105,108,113)+1,graf
 
 ```
 
+<analisis>
+
+</analisis>
 
 ## aleatorio
 
@@ -623,6 +656,10 @@ text(grafica9,
 ```
 
 
+<analisis>
+
+</analisis>
+
 ## papa + genero
 
 ```{r fig.align='center'}
@@ -630,6 +667,10 @@ ggplot(encuesta, aes(genero,PAPA,col = genero)) +
   geom_point(size = 2) +
   geom_smooth(se = FALSE)
 ```
+
+<analisis>
+
+</analisis>
 
 ## papa + edad
 
@@ -647,6 +688,10 @@ ggplot(encuesta, aes(PAPA, Carrera_depurada,col = Carrera_depurada)) +
   geom_smooth(se = FALSE)
 ```
 
+<analisis>
+
+</analisis>
+
 ## papa + estrato
 ```{r fig.align='center'}
 ggplot(encuesta, aes(PAPA, estrato,col = PAPA)) +
@@ -654,6 +699,10 @@ ggplot(encuesta, aes(PAPA, estrato,col = PAPA)) +
   geom_smooth(se = FALSE)
 ```
 
+
+<analisis>
+
+</analisis>
 ## Papa + computador mesa
 
 ```{r fig.align='center'}
@@ -706,6 +755,10 @@ abline(h = mean(encuesta$PAPA_depurado, na.rm = TRUE),
 
 par(parametros_anterior)
 ```
+
+<analisis>
+
+</analisis>
 
 ## Papa + portatil
 
@@ -760,6 +813,10 @@ abline(h = mean(encuesta$PAPA_depurado, na.rm = TRUE),
 par(parametros_anterior)
 ```
 
+<analisis>
+
+</analisis>
+
 ## Papa + internet
 
 ```{r fig.align='center'}
@@ -813,6 +870,10 @@ abline(h = mean(encuesta$PAPA_depurado, na.rm = TRUE),
 par(parametros_anterior)
 ```
 
+<analisis>
+
+</analisis>
+
 ## Papa + Smartphone
 
 ```{r fig.align='center'}
@@ -865,7 +926,9 @@ abline(h = mean(encuesta$PAPA_depurado, na.rm = TRUE),
 
 par(parametros_anterior)
 ```
+<analisis>
 
+</analisis>
 
 
 
