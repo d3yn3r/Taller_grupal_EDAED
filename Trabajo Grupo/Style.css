@@ -13,22 +13,13 @@ subtitulo{
   
 }
 
-pregunta{
-  color:#3D1BC7;
-  font-size: 200%;
-}
 
-analisis{
+texto{
   color: Black;
   font-size: 150;
   text-align: center;
   text-transform: lowercase;
   
-}
-ResumenN{
-  color: Black;
-  font-size: 200%;
-  text-align: justify;
 }
 
 
