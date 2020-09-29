@@ -518,75 +518,6 @@ par(parametros_anterior)
 
 </analisis>
 
-## estad_gov
-
-```{r fig.align='center'}
-Estado_gov <- table(encuesta$estad_gov)
-```
-
-```{r fig.align='center'}
-kable(Estado_gov,col.names = c("Respuesta","Número de Respuestas"))
-```
-
-```{r fig.align='center'}
-parametros_anterior <- par(no.readonly = TRUE)
-#Grafica variable Estado gov
-
-par(bg = "floralwhite")
-plot(seq(0,10, length.out = 60), seq(0,6, length.out = 60), type="n",
-     main   = "Estado Gov",
-     
-     font.main = 4,
-     font.lab  = 4,
-     cex.main  = 1.1,
-     cex.lab   = 0.8,
-     cex.sub   = 0.8,
-     axes      = FALSE,
-     xlab      = " ",
-     ylab      = "Numero de personas que respondierón ",
-     xlim = c(0,4),
-     ylim = c(0,100)
-     )
-
-rect(par("usr")[1],par("usr")[3],par("usr")[2],par("usr")[4],col="white")
-
-abline(h   = seq(0,100,10), 
-       col = rep("grey30",17), 
-       lty = 3,
-       
-       )
-
-Barras_Estado <- barplot(Estado_gov,
-                           col = c("lightblue", "lemonchiffon", "greenyellow"),
-                font.axis = 2,
-                axes      = FALSE,
-                add       = TRUE,
-                xlim = c(0,5),
-                names.arg = ""
-                )
-axis(2, at = c(),las = 1)
-
-text(Barras_Estado,
-     c(5, 5),
-     labels = paste(round((Estado_gov/sum(Estado_gov)*100),1),"%")
-     )
-
-text(Barras_Estado+0.1,
-     par("usr")[3],0.4,
-     labels = c("No", "No respindio", "si"),
-     srt = 45,
-     pos = 2,
-     xpd = TRUE)
-
-par(parametros_anterior)
-
-```
-
-
-<analisis>
-
-</analisis>
-
 ## origen covid
 
 ```{r fig.align='center'}
@@ -660,6 +591,72 @@ los gobiernos del mundo"),
 
 par(parametros_anterior)
 ```
+
+## estad_gov
+
+```{r fig.align='center'}
+Estado_gov <- table(encuesta$estad_gov)
+```
+
+```{r fig.align='center'}
+kable(Estado_gov,col.names = c("Respuesta","Número de Respuestas"))
+```
+
+```{r fig.align='center'}
+parametros_anterior <- par(no.readonly = TRUE)
+#Grafica variable Estado gov
+
+par(bg = "floralwhite")
+plot(seq(0,10, length.out = 60), seq(0,6, length.out = 60), type="n",
+     main   = "Estado Gov",
+     
+     font.main = 4,
+     font.lab  = 4,
+     cex.main  = 1.1,
+     cex.lab   = 0.8,
+     cex.sub   = 0.8,
+     axes      = FALSE,
+     xlab      = " ",
+     ylab      = "Numero de personas que respondierón ",
+     xlim = c(0,4),
+     ylim = c(0,100)
+     )
+
+rect(par("usr")[1],par("usr")[3],par("usr")[2],par("usr")[4],col="white")
+
+abline(h   = seq(0,100,10), 
+       col = rep("grey30",17), 
+       lty = 3,
+       
+       )
+
+Barras_Estado <- barplot(Estado_gov,
+                           col = c("lightblue", "lemonchiffon", "greenyellow"),
+                font.axis = 2,
+                axes      = FALSE,
+                add       = TRUE,
+                xlim = c(0,5),
+                names.arg = ""
+                )
+axis(2, at = c(),las = 1)
+
+text(Barras_Estado,
+     c(5, 5),
+     labels = paste(round((Estado_gov/sum(Estado_gov)*100),1),"%")
+     )
+
+text(Barras_Estado+0.1,
+     par("usr")[3],0.4,
+     labels = c("No", "No respindio", "si"),
+     srt = 45,
+     pos = 2,
+     xpd = TRUE)
+
+par(parametros_anterior)
+
+```
+
+
 
 <analisis>
 
