@@ -25,7 +25,9 @@ encuesta <- read.csv2("Encuesta_habitos_dep.csv",
 ```
 
 
-## genero
+<subtitulo>
+genero
+</subtitulo>
 ```{r fig.align='center'}
 genero <- table(encuesta$genero)
 kable(genero,col.names = c("Genero","Cantidad de Respuestas"))
@@ -78,7 +80,10 @@ par(parametros_anterior)
 
 </analisis>
 
-## fecha
+<subtitulo>
+Fecha
+</subtitulo>
+
 
 ```{r}
 kable(table(encuesta$edad),col.names = c("Edad","Número de Respuestas"))
@@ -115,7 +120,10 @@ par(parametros_anterior)
 <analisis>
 
 </analisis>
-## Carrera
+
+<subtitulo>
+Carrera
+</subtitulo>
 
 ```{r}
 a2 <- table(encuesta$Carrera_depurada)
@@ -167,7 +175,10 @@ text(ht + 0.1,
 par(parametros_anterior)
 
 ```
-## papa
+
+<subtitulo>
+PAPA
+</subtitulo>
 
 ```{r fig.align='center'}
 kable(table(encuesta$PAPA),col.names = c("PAPA","Frecuencia"))
@@ -206,7 +217,9 @@ k
 
 </analisis>
 
-## estrato
+<subtitulo>
+Estrato
+</subtitulo>
 
 
 ```{r fig.align='center'}
@@ -248,7 +261,9 @@ k
 </analisis>
 
 
-## computador mesa
+<subtitulo>
+Computador de mesa
+</subtitulo>
 
 ```{r fig.align='center'}
 computador_Mesa <- table(encuesta$computador_mesa)
@@ -314,7 +329,9 @@ par(parametros_anterior)
 </analisis>
 
 
-## portatil
+<subtitulo>
+Portatil
+</subtitulo>
 ```{r fig.align='center'}
 Portatil <- table(encuesta$portatil)
 ```
@@ -382,7 +399,9 @@ par(parametros_anterior)
 
 </analisis>
 
-## internet
+<subtitulo>
+Internet
+</subtitulo>
 ```{r fig.align='center'}
 internet <- table(encuesta$internet)
 ```
@@ -451,7 +470,9 @@ par(parametros_anterior)
 </analisis>
 
 
-## smartphone
+<subtitulo>
+SmartPhone
+</subtitulo>
 ```{r fig.align='center'}
 Smartphone <- table(encuesta$smartphone)
 ```
@@ -518,7 +539,9 @@ par(parametros_anterior)
 
 </analisis>
 
-## origen covid
+<subtitulo>
+Origen COVID
+</subtitulo>
 
 ```{r fig.align='center'}
 Origen_depurado <- with(encuesta, c(Origen1, Origen2, Origen3))
@@ -592,7 +615,9 @@ los gobiernos del mundo"),
 par(parametros_anterior)
 ```
 
-## estad_gov
+<subtitulo>
+¿Está de acuerdo con el gobierno?
+</subtitulo>
 
 ```{r fig.align='center'}
 Estado_gov <- table(encuesta$estad_gov)
@@ -662,7 +687,9 @@ par(parametros_anterior)
 
 </analisis>
 
-## habitos
+<subtitulo>
+Habitos
+</subtitulo>
 
 ```{r fig.align='center'}
 combinar<- with(encuesta, c(habito_1,habito_2,habito_3,habito_4
@@ -692,7 +719,9 @@ text(c(25,34,35,44,50,55,55,60,60,68,68,70,78,80,85,85,91,93,105,108,113)+1,graf
 
 </analisis>
 
-## aleatorio
+<subtitulo>
+Aleatorio
+</subtitulo>
 
 ```{r fig.align='center'}
 tabla9<- sort(table(encuesta$aleatorio))
@@ -713,7 +742,10 @@ text(grafica9,
 
 </analisis>
 
-## papa + genero
+<subtitulo>
+Variable PAPA relacionada con la varibale Genero
+</subtitulo>
+
 
 ```{r fig.align='center'}
 ggplot(encuesta, aes(genero,PAPA,col = genero)) +
@@ -725,7 +757,9 @@ ggplot(encuesta, aes(genero,PAPA,col = genero)) +
 
 </analisis>
 
-## papa + edad
+<subtitulo>
+Variable PAPA relacionada con la varibale Edad
+</subtitulo>
 
 ```{r,fig.height=7, fig.width=9,fig.align='center'}
 ggplot(encuesta ,aes(x=edad,y=PAPA,col=PAPA))+
@@ -733,7 +767,9 @@ ggplot(encuesta ,aes(x=edad,y=PAPA,col=PAPA))+
 
 ```
 
-## papa + carrera
+<subtitulo>
+Variable PAPA relacionada con la varibale Carrera
+</subtitulo>
 
 ```{r fig.align='center'}
 ggplot(encuesta, aes(PAPA, Carrera_depurada,col = Carrera_depurada)) +
@@ -745,7 +781,9 @@ ggplot(encuesta, aes(PAPA, Carrera_depurada,col = Carrera_depurada)) +
 
 </analisis>
 
-## papa + estrato
+<subtitulo>
+Variable PAPA relacionada con la varibale Estrato
+</subtitulo>
 ```{r fig.align='center'}
 ggplot(encuesta, aes(PAPA, estrato,col = PAPA)) +
   geom_point(size = 2) +
@@ -756,7 +794,9 @@ ggplot(encuesta, aes(PAPA, estrato,col = PAPA)) +
 <analisis>
 
 </analisis>
-## Papa + computador mesa
+<subtitulo>
+Variable PAPA relacionada con la varibale Computador de mesa
+</subtitulo>
 
 ```{r fig.align='center'}
 Computador_mesa1 <- tapply(encuesta$PAPA_depurado, encuesta$computador_mesa, mean, na.rm = TRUE)
@@ -816,7 +856,9 @@ par(parametros_anterior)
 
 </analisis>
 
-## Papa + portatil
+<subtitulo>
+Variable PAPA relacionada con la varibale Portatil
+</subtitulo>
 
 ```{r fig.align='center'}
 portatil1 <- tapply(encuesta$PAPA_depurado, encuesta$portatil, mean, na.rm = TRUE)
@@ -875,7 +917,9 @@ par(parametros_anterior)
 
 </analisis>
 
-## Papa + internet
+<subtitulo>
+Variable PAPA relacionada con la varibale Internet
+</subtitulo>
 
 ```{r fig.align='center'}
 Internet1 <- tapply(encuesta$PAPA_depurado, encuesta$internet, mean, na.rm = TRUE)
@@ -935,7 +979,9 @@ par(parametros_anterior)
 
 </analisis>
 
-## Papa + Smartphone
+<subtitulo>
+Variable PAPA relacionada con la varibale SmartPhone
+</subtitulo>
 
 ```{r fig.align='center'}
 smartphone1 <- tapply(encuesta$PAPA_depurado, encuesta$smartphone, mean, na.rm = TRUE)
