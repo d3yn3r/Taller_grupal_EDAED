@@ -273,7 +273,7 @@ kable(Portatil,col.names = c("Respuesta","Cantidad de respuestas"))
 parametros_anterior <- par(no.readonly = TRUE)
 #Grafica variable portatil
 
-par(bg = "white")
+par(bg = "lightblue")
 plot(seq(0,10, length.out = 60), seq(0,6, length.out = 60), type="n",
      main   = "Portatil",
      
@@ -341,7 +341,7 @@ kable(internet,col.names = c("Respuestas","Cantidad de respuestas"))
 parametros_anterior <- par(no.readonly = TRUE)
 #Grafica variable internet
 
-par(bg = "white")
+par(bg = "lightblue")
 plot(seq(0,10, length.out = 60), seq(0,6, length.out = 60), type="n",
      main   = "Internet",
      
@@ -410,7 +410,7 @@ kable(Smartphone,col.names = c("Repsuesta","cantidad de respuestas"))
 parametros_anterior <- par(no.readonly = TRUE)
 #Grafica variable Smartphone
 
-par(bg = "white")
+par(bg = "lightblue")
 plot(seq(0,10, length.out = 60), seq(0,6, length.out = 60), type="n",
      main   = "Smartphone",
      
@@ -478,7 +478,7 @@ kable(Estado_gov,col.names = c("Respuesta","Número de Respuestas"))
 parametros_anterior <- par(no.readonly = TRUE)
 #Grafica variable Estado gov
 
-par(bg = "white")
+par(bg = "floralwhite")
 plot(seq(0,10, length.out = 60), seq(0,6, length.out = 60), type="n",
      main   = "Estado Gov",
      
@@ -503,7 +503,7 @@ abline(h   = seq(0,100,10),
        )
 
 Barras_Estado <- barplot(Estado_gov,
-                           col = c("olivedrab3", "yellow4"),
+                           col = c("lightblue", "lemonchiffon", "greenyellow"),
                 font.axis = 2,
                 axes      = FALSE,
                 add       = TRUE,
@@ -549,7 +549,7 @@ kable(origen,col.names = c("Origen","Respuestas"))
 
 parametros_anterior <- par(no.readonly = TRUE)
 
-par(bg = "white")
+par(bg = "floralwhite")
 plot(seq(0,10, length.out = 60), seq(0,6, length.out = 60), type="n",
      main   = "Origen covid 19",
      
@@ -715,6 +715,9 @@ Computador_mesa1 <- tapply(encuesta$PAPA_depurado, encuesta$computador_mesa, mea
 ```{r fig.height=7, fig.width=8,fig.align='center'}
 parametros_anterior <- par(no.readonly = TRUE)
 
+par(bg = "floralwhite")
+
+
 par(mar = parametros_anterior$mar + c(16, 10, 0, 0),
     las = 2,
     xaxt = "n",
@@ -724,7 +727,7 @@ with(encuesta, boxplot(PAPA_depurado ~ computador_mesa,
                        xlab = "",
                        notch = TRUE,
                        varwidth = TRUE,
-                       col = c("red", "green", "yellow", "orange")))
+                       col = c("darkseagreen2", "darkslategray2", "lavenderblush2", "lightpink1")))
      
 
 title(main = "PAPA con computador de mesa ")
@@ -772,6 +775,8 @@ portatil1 <- tapply(encuesta$PAPA_depurado, encuesta$portatil, mean, na.rm = TRU
 ```{r fig.height=7, fig.width=8,fig.align='center'}
 parametros_anterior <- par(no.readonly = TRUE)
 
+par(bg = "floralwhite")
+
 par(mar = parametros_anterior$mar + c(16, 10, 0, 0),
     las = 2,
     xaxt = "n",
@@ -781,7 +786,7 @@ with(encuesta, boxplot(PAPA_depurado ~ portatil,
                        xlab = "",
                        notch = TRUE,
                        varwidth = TRUE,
-                       col = c("red", "green", "yellow", "orange")))
+                       col = c("darkolivegreen1", "darkslategray3", "khaki1", "lightsalmon")))
      
 
 title(main = "PAPA con la variable Portatil")
@@ -827,7 +832,10 @@ Internet1 <- tapply(encuesta$PAPA_depurado, encuesta$internet, mean, na.rm = TRU
 
 
 ```{r fig.height=7, fig.width=8, fig.align='center'}
+
 parametros_anterior <- par(no.readonly = TRUE)
+
+par(bg = "floralwhite")
 
 par(mar = parametros_anterior$mar + c(16, 10, 0, 0),
     las = 2,
@@ -838,7 +846,7 @@ with(encuesta, boxplot(PAPA_depurado ~ internet,
                        xlab = "",
                        notch = TRUE,
                        varwidth = TRUE,
-                       col = c("red", "green", "yellow", "orange")))
+                       col = c("mediumspringgreen", "navajowhite", "lightsteelblue1", "rosybrown1", "gold", "darkorchid1")))
      
 
 title(main = "PAPA con la variable internet")
@@ -886,6 +894,9 @@ smartphone1 <- tapply(encuesta$PAPA_depurado, encuesta$smartphone, mean, na.rm =
 ```{r fig.height=7, fig.width=8, fig.align='center'}
 parametros_anterior <- par(no.readonly = TRUE)
 
+par(bg = "floralwhite")
+
+
 par(mar = parametros_anterior$mar + c(16, 10, 0, 0),
     las = 2,
     xaxt = "n",
@@ -895,7 +906,7 @@ with(encuesta, boxplot(PAPA_depurado ~ smartphone,
                        xlab = "",
                        notch = TRUE,
                        varwidth = TRUE,
-                       col = c("red", "green", "yellow", "orange")))
+                       col = c("red", "green", "yellow", "gold", "darksalmon")))
      
 
 title(main = "PAPA la variable smartphone ")
