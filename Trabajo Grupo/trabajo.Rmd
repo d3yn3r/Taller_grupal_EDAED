@@ -748,7 +748,7 @@ Variable PAPA relacionada con la varibale Edad
 </subtitulo>
 
 ```{r,fig.height=7, fig.width=9,fig.align='center'}
-ggplot(encuesta ,aes(x=edad,y=PAPA,col=PAPA))+
+ggplot(encuesta ,aes(x=edad,y=papa,col=PAPA))+
   geom_point(size = 2)+theme(axis.text.x = element_text(angle = 90, hjust = 1))
 
 ```
@@ -758,7 +758,7 @@ Variable PAPA relacionada con la varibale Carrera
 </subtitulo>
 
 ```{r fig.align='center'}
-ggplot(encuesta, aes(PAPA, Carrera_depurada,col = Carrera_depurada)) +
+ggplot(encuesta, aes( PAPA,Carrera_depurada,col = Carrera_depurada)) +
   geom_point(size = 2) +
   geom_smooth(se = FALSE)
 ```
@@ -771,7 +771,7 @@ ggplot(encuesta, aes(PAPA, Carrera_depurada,col = Carrera_depurada)) +
 Variable PAPA relacionada con la varibale Estrato
 </subtitulo>
 ```{r fig.align='center'}
-ggplot(encuesta, aes(PAPA, estrato,col = PAPA)) +
+ggplot(encuesta, aes( estrato,PAPA,col = PAPA)) +
   geom_point(size = 2) +
   geom_smooth(se = FALSE)
 ```
@@ -1025,10 +1025,98 @@ par(parametros_anterior)
 <analisis>
 
 </analisis>
+<subtitulo>
+Variable PAPA relacionada con la varibale estad_gov
+</subtitulo>
+
+```{r}
+library(hexbin)
+
+ggplot(encuesta,aes(estad_gov,(PAPA_depurado))) +
+  geom_hex() +
+  
+  labs(title="Diagrama de dispersión",
+       subtitle= "Encuesta estad_gov",
+       x="Respuestas",
+       y="PAPA") +
+  scale_fill_continuous("estad_gov") +
+  theme_classic()
+
+```
+
 
 <subtitulo>
-Variable PAPA relacionada con la varibale SmartPhone
+Variable PAPA relacionada con la varibale Origen COVID
 </subtitulo>
+
+```{r fig.height=8,fig.width= 15}
+ll<-  encuesta$PAPA
+cc<- sort(ll)
+mm<-median(cc)
+d2<- pivot_longer(encuesta,Origen1:Origen3,
+                  names_to = "Numero de Origenes",
+                  values_to = "Origenes_cov",
+                  values_drop_na = T)
+parametros_anterior <- par(no.readonly = TRUE)
+par(mar=parametros_anterior$mar + c(0, 30 , 0, 0))
+with(encuesta, boxplot(PAPA ~ origen_covid_19, data=d2, las=1,
+                        xlab = "Promedio Arimetico Ponderado Acumulado (PAPA)",
+                        ylab = "",
+                        names.arg = "",
+                        notch = TRUE,
+                        main="Encuesta (origen_covid_19)",
+                        horizontal = T,
+                        varwidth = TRUE,
+                       cex.text =0.7,
+                       col = 18:dim(b1),
+                       density = 50))
+
+abline( v = median(cc),col = "blue", lwd=2)
+
+
+
+par(parametros_anterior)
+
+```
+
+<subtitulo>
+Variable PAPA relacionada con la varibale Habitos
+</subtitulo>
+
+```{r  fig.height=15, fig.width= 15}
+d1<- pivot_longer(encuesta,habito_1:habito_17,
+                  names_to = "Numero de habitos",
+                  values_to = "habito",
+                  values_drop_na = T)
+ll<-  encuesta$PAPA
+cc<- sort(ll)
+mm<-median(cc)
+parametros_anterior <- par(no.readonly = TRUE)
+par(mar=parametros_anterior$mar + c(0, 30 , 0, 0))
+
+
+with(encuesta, boxplot(PAPA ~ habito, data=d1, las=1,
+                        xlab = "Promedio Arimetico Ponderado Acumulado (PAPA)",
+                        ylab = "",
+                        notch = TRUE,
+                        horizontal = T,
+                        varwidth = TRUE,
+                       cex.text =0.7,
+                       main = "Encuesta (Habitos)",
+                       col = 18:dim(b1),
+                       density = 50))
+
+abline( v = median(cc),col = "red", lwd=2)
+
+
+par(parametros_anterior)
+```
+
+
+<subtitulo>
+Variable PAPA relacionada con la varibale Aleatorio
+</subtitulo>
+
 ```{r fig.height=8, fig.width= 10}
 
  ggplot(encuesta, aes(aleatorio,PAPA ,col = aleatorio)) +
