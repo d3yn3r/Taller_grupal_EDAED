@@ -142,40 +142,23 @@ a0 <-a2/sum(a2) * 100
 kable(a2,col.names = c("Carrera","Cantidad de Respuestas"))
 ```
 
-```{r fig.height=8, fig.width= 13}
-parametros_anterior <- par(no.readonly = TRUE)
-colores <-c("#0c67da", "#0c67da", "#cc1f0e", "#0c67da", "#0c67da")
-a0<- a0[order(a0, decreasing=TRUE)]
-par(mar=parametros_anterior$mar+c(3,0,0,0))
-plot(seq(0,5, length.out= 100),1:100, type= "n",
-     axes = FALSE, 
-     main = "\nDiagrama de Barras de los ejemplos",
-     xlab= "",
-     ylab= "Frecuencia por Persona",
-     besides= FALSE,
-     xlim= c(0,6))
+```{r}
+t1<- sort(table(encuesta$Carrera_depurada))
+ggplot(encuesta, aes(Carrera_depurada,y = (..count..)/sum(..count..), fill=Carrera_depurada)) +
+  geom_bar() +
+  labs(title="Encuesta (Carreras)",
+       x= "Carreras",
+       y="Número de Personas(en porcentaje)") +
+  scale_x_discrete(labels=NULL) +
+  scale_fill_brewer(palette = "Accent",
+                    "Carreras") +
+  geom_text(stat="count", 
+            aes(label = paste(round((..count..)/sum(..count..)*100), "%")),
+            position = "stack",
+            vjust=-0.1,
+            size=3,
+            color="black")
 
-abline(h = seq(0, 100, 10),  col= "black", lty = 3)
-ht <- barplot(a0, 
-        las = 1, 
-        ylim = c(0,80),
-        xlab= "",
-        names.arg = "",
-        col = colores,
-        add= TRUE)
-text(ht, c (94,5,5,3,3), 
-     labels = paste(formatC(round(a0),
-                    digits= 6, decimal.mark = ",",
-                    big.mark = "."),
-                    "%"))
-text(ht + 0.1,
-    par("usr")[3],0.4,
-    labels=names(a0),
-    srt= 45,
-    pos= 2,
-    xpd= TRUE)
-
-par(parametros_anterior)
 
 ```
 
@@ -735,7 +718,7 @@ kable(tabla9,col.names = c("Valor Aleatorio","Frecuencia"))
 grafica9<-barplot(tabla9,las=2,col = c("cyan","darkred","blue","yellow","violet","tomato"),ylim = c(0,40))
 
 text(grafica9,
-     c(3,8,10,10,11,12,12,15,16,21,36),
+     c(8,10,11,11,12,12,15,16,21,36),
      labels = paste(round((tabla9/sum(tabla9)*100),1),"%")
      )
 ```
@@ -1042,6 +1025,16 @@ par(parametros_anterior)
 <analisis>
 
 </analisis>
+
+<subtitulo>
+Variable PAPA relacionada con la varibale SmartPhone
+</subtitulo>
+```{r fig.height=8, fig.width= 10}
+
+ ggplot(encuesta, aes(aleatorio,PAPA ,col = aleatorio)) +
+ geom_point(size = 3) +
+ geom_smooth(se = T)
+```
 
 
 
