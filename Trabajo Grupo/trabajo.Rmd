@@ -2,7 +2,10 @@
 title: "trabajo"
 author: "Deyner Lopez Pineda Maria Daysi Hadeil"
 date: "18/9/2020"
-output: html_document
+output:
+        html_document:
+                toc : yes
+                css : Style.css
 ---
 
 ```{r setup, include=FALSE}

@@ -1,0 +1,34 @@
+body{
+    background-color: Cadetblue; 
+}
+h1{/* Etiqueta del titulo*/
+  color:#3D1BC7;
+  text-align: center;
+}
+
+subtitulo{
+  color:Black;
+  font-size: 250%;
+  text-align: justify;
+  
+}
+
+pregunta{
+  color:#3D1BC7;
+  font-size: 200%;
+}
+
+analisis{
+  color: Black;
+  font-size: 150;
+  text-align: center;
+  text-transform: lowercase;
+  
+}
+ResumenN{
+  color: Black;
+  font-size: 200%;
+  text-align: justify;
+}
+
+
