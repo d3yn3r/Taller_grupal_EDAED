@@ -15,6 +15,9 @@ knitr::opts_chunk$set(echo = FALSE,
 ```{r}
 library(knitr)
 library(ggplot2)
+library(dplyr)
+library(hexbin)
+library(tidyverse)
 encuesta <- read.csv2("Encuesta_habitos_dep.csv", 
                        encoding = "UTF-8",
                       header = TRUE,
@@ -112,7 +115,58 @@ par(parametros_anterior)
 <analisis>
 
 </analisis>
+## Carrera
 
+```{r}
+a2 <- table(encuesta$Carrera_depurada)
+
+```
+
+```{r}
+a0 <-a2/sum(a2) * 100
+
+```
+
+```{r}
+kable(a2,col.names = c("Carrera","Cantidad de Respuestas"))
+```
+
+```{r fig.height=8, fig.width= 13}
+parametros_anterior <- par(no.readonly = TRUE)
+colores <-c("#0c67da", "#0c67da", "#cc1f0e", "#0c67da", "#0c67da")
+a0<- a0[order(a0, decreasing=TRUE)]
+par(mar=parametros_anterior$mar+c(3,0,0,0))
+plot(seq(0,5, length.out= 100),1:100, type= "n",
+     axes = FALSE, 
+     main = "\nDiagrama de Barras de los ejemplos",
+     xlab= "",
+     ylab= "Frecuencia por Persona",
+     besides= FALSE,
+     xlim= c(0,6))
+
+abline(h = seq(0, 100, 10),  col= "black", lty = 3)
+ht <- barplot(a0, 
+        las = 1, 
+        ylim = c(0,80),
+        xlab= "",
+        names.arg = "",
+        col = colores,
+        add= TRUE)
+text(ht, c (94,5,5,3,3), 
+     labels = paste(formatC(round(a0),
+                    digits= 6, decimal.mark = ",",
+                    big.mark = "."),
+                    "%"))
+text(ht + 0.1,
+    par("usr")[3],0.4,
+    labels=names(a0),
+    srt= 45,
+    pos= 2,
+    xpd= TRUE)
+
+par(parametros_anterior)
+
+```
 ## papa
 
 ```{r fig.align='center'}
